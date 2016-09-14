@@ -2,7 +2,14 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+//var io = require('socket.io')(server);
+//var io = require('socket.io-emitter')(server);
+var io = require('socket.io-emitter')({ host: 'unchain-session-001.mxpohd.0001.euw1.cache.amazonaws.com', port: 6379 });
+var redis = require('socket.io-redis');
+
+//io.adapter(redis({ host: 'unchain-session-001.mxpohd.0001.euw1.cache.amazonaws.com', port: 6379 }));
+
+
 var port = process.env.PORT || 3000;
 
 io.set('transports', ['websocket']);
